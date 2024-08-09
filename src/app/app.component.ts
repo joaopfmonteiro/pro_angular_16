@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TodoItem } from './todoItem';
+import { TodoList } from './todoList';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'pro_angular_16';
+  private list = new TodoList("Bob", [
+    new TodoItem("Go for run", true),
+    new TodoItem("Get flowers", false),
+    new TodoItem("Collect tickets", false),
+]);
+    get username(): string {
+      return this.list.user;
+    }     
+    get itemCount(): number {         
+      return this.list.todoItems.filter(item => !item.complete).length;
+    }
+
 }
